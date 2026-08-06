@@ -102,7 +102,7 @@ export const TopHeader = styled.div`
             grid-row: 1 / 2;
             justify-self: start;
         }
-        & > img {
+        & > .logo-link {
             grid-column: 2 / 3;
             grid-row: 1 / 2;
             justify-self: center;

@@ -19,7 +19,6 @@ const Header = () => {
             <Container >
                 {/* TopHeader (No Desktop, o menu não ocupa espaço. No Mobile, ele fica na esquerda) */}
                 <TopHeader >
-
                     {/* 1. Menu Hambúrguer (Agora faz parte da linha superior) */}
                     <div
                         className='menu-Hamburguer'
@@ -32,11 +31,10 @@ const Header = () => {
                         <span></span>
                         <span></span>
                     </div>
+                    <a href='#' className='logo-link'>
 
-                    {/* 2. Logo (No Mobile, fica no centro graças ao space-between) */}
                     <img src={logo} alt="Logo da 'nome da empresa'" width={55} height={55} />
-
-                    {/* 3. Campo de Busca (No Mobile, o flex-wrap vai jogar ele pra linha de baixo) */}
+                    </a>
                     <SearchForm role='search' >
                         <input
                             type="search"
