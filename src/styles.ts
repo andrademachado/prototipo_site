@@ -21,6 +21,11 @@ export const GlobalCss =  createGlobalStyle `
             color: ${cores.preto};
             padding-top: 10px;            
         }
+        .container {
+        max-width: 1024px;
+        width: 100%;
+        margin: 0 auto;
+        }
 }
 `
 export const Container = styled.div`

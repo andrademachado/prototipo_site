@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { HeaderBar, Links, LinkItem, TopHeader, NavBAR, SearchForm } from './styles'
-import { Container } from '../../styles'
 import logo from '../../assets/images/Logo.png'
 import zap from '../../assets/images/zap.svg'
 import lupa from '../../assets/images/lupa.svg'
@@ -15,8 +14,8 @@ const Header = () => {
     }
 
     return (
-        <HeaderBar>
-            <Container >
+        <HeaderBar className='container'>
+            < >
                 {/* TopHeader (No Desktop, o menu não ocupa espaço. No Mobile, ele fica na esquerda) */}
                 <TopHeader >
                     {/* 1. Menu Hambúrguer (Agora faz parte da linha superior) */}
@@ -80,7 +79,7 @@ const Header = () => {
                         </LinkItem>
                     </Links>
                 </NavBAR>
-            </Container>
+            </>
         </HeaderBar>
     )
 }
