@@ -22,14 +22,11 @@ export const GlobalCss =  createGlobalStyle `
             padding-top: 10px;            
         }
         .container {
-        max-width: 1024px;
-        width: 100%;
-        margin: 0 auto;
+            max-width: 1024px;
+            width: 100%;
+            margin: 0 auto;
         }
 }
 `
-export const Container = styled.div`
-        max-width: 1024px;
-        width: 100%;
-        margin: 0 auto;
-`
+
+
