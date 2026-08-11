@@ -25,16 +25,17 @@ export const Imagem = styled.div`
 
     /* ========== ESTILOS BASE (DESKTOP) ========== */
     .container {
-        position: absolute;
+        position: relative;
+        padding-top: 140;
         bottom: 30%;
         left: 15%;
         margin: 0;
         width: 60%;              /* largura menor para caber na parte branca */
         max-width: 700px;        /* limite máximo */
         display: flex;
-        align-items: center;
-        justify-content: flex-start;  /* em vez de space-between */
-        gap: 30px;              /* espaçamento fixo entre texto e botão */
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 10px;              /* espaçamento fixo entre texto e botão */
     }
 
     /* ========== TABLET (768px a 1023px) ========== */
@@ -51,7 +52,7 @@ export const Imagem = styled.div`
             max-width: 600px;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: space-between;
             gap: 20px;            /* espaçamento menor no tablet */
             margin: 0;
         }
