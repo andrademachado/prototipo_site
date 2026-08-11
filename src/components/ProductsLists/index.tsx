@@ -8,7 +8,7 @@ export type Props ={
 }
 
 const ProductsLists = ({ background, title}: Props) => (
-    <>
+
         <Container background={background}>
         <div className="container">
         <h2>{title}</h2>
@@ -20,7 +20,6 @@ const ProductsLists = ({ background, title}: Props) => (
         </List >
         </div>
         </Container>
-    </>
 )
 
 export default ProductsLists
