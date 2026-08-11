@@ -1,15 +1,16 @@
-import imgTeste from '../../assets/images/imgTeste2.png'
 import { Card, Descricao, Titulo } from './style'
 
-const Product = () => (
+type Props = {
+    title:string;
+    description:string;
+    image:string
+}
+
+const Product = ({title, description, image}:Props) => (
 <Card>    
-        <img src={imgTeste} width={220} height={250}/>
-        <Titulo >Texto</Titulo >
-        <Descricao>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
-            Nihil consequuntur voluptatum impedit provident, ullam officiis <br />
-            reiciendis corrupti ad asperiores magni quod voluptatem quidem<br />
-            aut adipisci repellendus facilis, laborum quas aliquid.
-        </Descricao>
+        <img src={image} width={220} height={250} alt={title}/>
+        <Titulo >{title}</Titulo >
+        <Descricao>{description}</Descricao>
 </Card>
 
 )
