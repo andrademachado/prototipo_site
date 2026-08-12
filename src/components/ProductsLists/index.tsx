@@ -1,22 +1,30 @@
 import Product from "../Product"
 import { Container, List } from './styles'
-import imgTeste from '../../assets/images/imgTeste2.png'
+
+import type Site from "../../models/site"
 
 export type Props ={
     title: string
     background: 'beige' | 'branco'
+    sites: Site[]
 }
 
-const ProductsLists = ({ background, title}: Props) => (
+const ProductsLists = ({ background, title,sites}: Props) => (
 
         <Container background={background}>
         <div className="container">
         <h2>{title}</h2>
         <List >
-            <Product title="titulo" description="texto" image={imgTeste}/>
-            <Product title="titulo" description="texto" image={imgTeste} />
-            <Product title="titulo" description="texto" image={imgTeste} />
-            <Product title="titulo" description="texto" image={imgTeste} />
+            {sites.map(site =>(
+
+            <Product 
+            key={site.id}
+            title={site.title}
+            description={site.description} 
+            image={site.image}
+            />
+            ))}
+            
         </List >
         </div>
         </Container>
