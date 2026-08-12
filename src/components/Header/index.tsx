@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { HeaderBar, Links, LinkItem, TopHeader, NavBAR, SearchForm } from './styles'
 import logo from '../../assets/images/Logo.png'
@@ -69,7 +70,7 @@ const Header = () => {
                 <NavBAR className={menuAberto ? 'is-open' : ''}>
                     <Links className={menuAberto ? 'is-open' : ''}>
                         <LinkItem>
-                            <a href="#">Categoria 1</a>
+                            <Link to="/categoria1">Categoria 1</Link>
                         </LinkItem>
                         <LinkItem>
                             <a href="#">Categoria 2</a>
