@@ -39,4 +39,7 @@ export const List = styled.ul`
 export const Title = styled.h2`
     font-size: 18px;
     font-weight: bold;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    
 `
