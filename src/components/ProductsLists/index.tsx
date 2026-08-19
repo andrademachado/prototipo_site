@@ -14,31 +14,44 @@ export type Props = {
 };
 
 const ProductsLists = ({ background, title, sites }: Props) => {
-    // Referência para o título – animaremos apenas ele
     const titleRef = useRef<HTMLHeadingElement>(null);
-    // Referência para o container – escopo da animação
     const containerRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
-        // Cria um contexto GSAP limitado ao container
         const ctx = gsap.context(() => {
-            // Só anima se o título existir
+            // Título (mesmo de antes)
             if (titleRef.current) {
                 gsap.from(titleRef.current, {
-                    x: -50,          // começa deslocado para esquerda
-                    opacity: 0,       // começa invisível
-                    duration: 1,      // (opcional) usado apenas se scrub for desativado
+                    x: -60,
+                    opacity: 0,
+                    duration: 1,
                     scrollTrigger: {
                         trigger: titleRef.current,
-                        start: 'top 90%',           // quando o topo do título encostar em 85% da viewport
-                        end: 'bottom 200px',        // quando a base do título estiver a 500px do topo da viewport
-                        scrub: 4,                // animação controlada pelo scroll (vai e volta)
+                        start: 'top 80%',
+                        end: 'bottom 200px',
+                        scrub: 1.2,
+                    }
+                });
+            }
+
+            // CARDS - Efeito escolhido: entrada pela direita
+            const cards = gsap.utils.toArray<HTMLElement>('.product-item', containerRef.current);
+            if (cards.length > 0) {
+                gsap.from(cards, {
+                    x: 200,              // ← vêm da direita
+                    opacity: 0,
+                    duration: 1,
+                    stagger: 0.1,
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top 85%',
+                        end: 'top 30%',
+                        scrub: 2,
                     }
                 });
             }
         }, containerRef);
 
-        // Limpeza: reverte o contexto ao desmontar ou reexecutar
         return () => ctx.revert();
     }, []);
 
@@ -47,13 +60,14 @@ const ProductsLists = ({ background, title, sites }: Props) => {
             <div className="container">
                 <h2 ref={titleRef}>{title}</h2>
                 <List>
-                    {sites.map(site => (
-                        <Product
-                            key={site.id}
-                            title={site.title}
-                            description={site.description}
-                            image={site.image}
-                        />
+                    {sites.map((site) => (
+                        <div key={site.id} className="product-item">
+                            <Product
+                                title={site.title}
+                                description={site.description}
+                                image={site.image}
+                            />
+                        </div>
                     ))}
                 </List>
             </div>
