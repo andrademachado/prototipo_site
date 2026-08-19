@@ -73,10 +73,10 @@ const Header = () => {
                             <Link to="/categoria1">Categoria 1</Link>
                         </LinkItem>
                         <LinkItem>
-                            <a href="#">Categoria 2</a>
+                            <Link to="/categoria2">Categoria 2</Link>
                         </LinkItem>
                         <LinkItem>
-                            <a href="#">Categoria 3</a>
+                            <Link to="/categoria3">Categoria 3</Link>
                         </LinkItem>
                     </Links>
                 </NavBAR>
