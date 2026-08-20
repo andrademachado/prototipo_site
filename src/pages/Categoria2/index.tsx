@@ -1,12 +1,15 @@
-import ProductsLists from "../../components/ProductsLists"
-import imgTeste from '../../assets/images/imgTeste2.png'
-import type Site from "../../models/site"
+// src/pages/Categoria2.tsx
+
+import ProductsLists from "../../components/ProductsLists";
+import { useScrollToAnchor } from "../../hooks/useScrollToAnchor"; // ← ADICIONADO
+import imgTeste from '../../assets/images/imgTeste2.png';
+import type Site from "../../models/site";
 
 const promocoes: Site[] = [
     {
-        id:1,
-        title:'Título1',
-        description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim commodi obcaecati ad magnam ipsum voluptate hic voluptatem, tenetur natus sed? Error cumque nisi ea eius magnam qui optio nihil exercitationem',
+        id: 1,
+        title: 'Título1',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim commodi obcaecati ad magnam ipsum voluptate hic voluptatem, tenetur natus sed? Error cumque nisi ea eius magnam qui optio nihil exercitationem',
         image: imgTeste
     },
     {
@@ -27,8 +30,8 @@ const promocoes: Site[] = [
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim commodi obcaecati ad magnam ipsum voluptate hic voluptatem, tenetur natus sed? Error cumque nisi ea eius magnam qui optio nihil exercitationem',
         image: imgTeste
     }
-]
-    
+];
+
 const lancamentos: Site[] = [
     {
         id: 5,
@@ -54,16 +57,34 @@ const lancamentos: Site[] = [
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim commodi obcaecati ad magnam ipsum voluptate hic voluptatem, tenetur natus sed? Error cumque nisi ea eius magnam qui optio nihil exercitationem',
         image: imgTeste
     }
-]
+];
 
+// ============================================================
+// COMPONENTE CATEGORIA2 (MODIFICADO)
+// ============================================================
+const Categoria2 = () => {
+    // ← CHAMADA DO HOOK
+    useScrollToAnchor();
 
-const Categoria2 = () => (
-    <>
-        <ProductsLists sites={promocoes} title={'Promoções'} background={'branco'} />
-        <ProductsLists sites={lancamentos} title={'Lançamentos'} background={'beige'} />
-        <ProductsLists sites={promocoes} title={'Serviços'} background={'branco'} />
-        <ProductsLists sites={lancamentos} title={'Métodos'} background={'beige'} />
-    </>
-)
+    return (
+        <>
+            <section id="servicos">
+                <ProductsLists sites={promocoes} title={'Promoções'} background={'branco'} />
+            </section>
 
-export default Categoria2
+            <section id="produtos">
+                <ProductsLists sites={lancamentos} title={'Lançamentos'} background={'beige'} />
+            </section>
+
+            <section id="especializacoes">
+                <ProductsLists sites={promocoes} title={'Serviços'} background={'branco'} />
+            </section>
+
+            <section id="resultados">
+                <ProductsLists sites={lancamentos} title={'Métodos'} background={'beige'} />
+            </section>
+        </>
+    );
+};
+
+export default Categoria2;
