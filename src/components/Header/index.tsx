@@ -1,5 +1,3 @@
-// src/components/Header/index.tsx
-
 import { Link, useNavigate, useLocation } from 'react-router-dom'; // ← ADICIONEI useNavigate e useLocation
 import { useState } from 'react';
 import { HeaderBar, Links, LinkItem, TopHeader, NavBAR, SearchForm } from './styles';
@@ -7,10 +5,8 @@ import logo from '../../assets/images/Logo.png';
 import zap from '../../assets/images/zap.svg';
 import lupa from '../../assets/images/lupa.svg';
 import close from '../../assets/images/close1.svg';
+import { sanitizeInput } from '../../utils/security'
 
-// ============================================================
-// IMPORTE A FUNÇÃO DE BUSCA DO searchIndex.ts
-// ============================================================
 import { findDestination } from '../../config/searchIndex';
 
 const Header = () => {
@@ -27,43 +23,36 @@ const Header = () => {
         setMenuAberto(!menuAberto);
     };
 
-    // ============================================================
-    // FUNÇÃO PRINCIPAL DE BUSCA (NOVA)
-    // ============================================================
     const handleSearch = () => {
-        const termo = busca.trim();
-        if (!termo) return; // se o campo estiver vazio, não faz nada
+    // 🔒 1. Sanitiza o termo bruto vindo do input
+    const termo = sanitizeInput(busca);
+    
+    // 🔒 2. Se ficou vazio (ou só espaços), não faz nada
+    if (!termo) return;
 
-        // Procura a palavra no índice
-        const destino = findDestination(termo);
+    // 3. Procura a palavra no índice
+    const destino = findDestination(termo);
 
-        if (destino) {
-            const { path, anchor } = destino;
+    if (destino) {
+        const { path, anchor } = destino;
 
-            // Verifica se já estamos na página correta
-            if (location.pathname === path) {
-                // Mesma página: rola suavemente até a âncora
-                const element = document.getElementById(anchor);
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            } else {
-                // Página diferente: navega com a âncora na URL
-                navigate(`${path}#${anchor}`);
+        // Verifica se já estamos na página correta
+        if (location.pathname === path) {
+            // Mesma página: rola suavemente até a âncora
+            const element = document.getElementById(anchor);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         } else {
-            // Palavra não encontrada: exibe alerta (ou redirecione para 404)
-            alert(`Nenhum resultado encontrado para "${termo}"`);
-            // Opcional: navigate('/nao-encontrado');
+            // Página diferente: navega com a âncora na URL
+            navigate(`${path}#${anchor}`);
         }
+    } else {
+        // Palavra não encontrada: exibe alerta com o termo sanitizado
+        alert(`Nenhum resultado encontrado para "${termo}"`);
+    }
+};
 
-        // (Opcional) Limpa o campo após a busca – descomente se quiser
-        // setBusca('');
-    };
-
-    // ============================================================
-    // JSX (MANTIDO EXATAMENTE IGUAL, APENAS CONECTAMOS handleSearch)
-    // ============================================================
     return (
         <HeaderBar className='container'>
             <>
@@ -101,6 +90,7 @@ const Header = () => {
                             placeholder='Pesquisar'
                             value={busca}
                             onChange={(e) => setBusca(e.target.value)}
+                            maxLength={50} 
                         />
                         <div
                             className={`botao-limpar ${busca.length > 0 ? 'visivel' : ''}`}
